@@ -1,5 +1,13 @@
 # LayerKit Change Log
 
+## 0.26.6
+
+#### Bug Fixes
+
+* Fixes an issue where the client could crash during the synchronization process. [IOS-3095]
+* Fixes an issue where the call to `-setPresenceStatusAndPostObjectChanges:error:` could crash. [IOS-3106]
+* Fix race condition in Telemetry that could result in data being lost, and correctly delete expired data to avoid cluttering disk. [IOS-3039]
+
 ## 0.26.5
 
 #### Bug Fixes
