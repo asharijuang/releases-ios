@@ -1,5 +1,11 @@
 # LayerKit Change Log
 
+## 0.26.7
+
+#### Bug Fixes
+
+* Fixes an issue where the client would hit a delay after synchronizing the first 10 conversations. [IOS-3112]
+
 ## 0.26.6
 
 #### Bug Fixes
