@@ -646,7 +646,6 @@ extern NSString * _Nonnull const LYRClientContentTransferProgressUserInfoKey;
 
 /**
  @abstract Returns the ordered set of `LYRPolicy` objects governing the behavior of the client.
- @discussion
  */
 @property (nonatomic, readonly, nullable) NSOrderedSet<LYRPolicy *> *policies;
 
@@ -676,7 +675,7 @@ extern NSString * _Nonnull const LYRClientContentTransferProgressUserInfoKey;
 
 /**
  @abstract Removes the specified policies from the receiver.
- @param policy The set of polices to be removed from the client.
+ @param policies The set of polices to be removed from the client.
  @param error A pointer to an error that upon failure is set to an error object describing the policy could not be added.
  @return A Boolean value that indicates if the given policies were removed.
  */

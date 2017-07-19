@@ -1,5 +1,11 @@
 # LayerKit Change Log
 
+## 0.26.8 
+
+#### Bug Fixes
+
+* Documentation fixes in various public header files.  
+  
 ## 0.26.7
 
 #### Bug Fixes

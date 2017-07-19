@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "LayerKit"
-  s.version = "0.26.7"
+  s.version = "0.26.8"
   s.summary = "LayerKit is the iOS client interface for the Layer communications cloud."
   s.license = "Commercial"
   s.authors = {"Andrew McKnight"=>"andrew@layer.com", "Blake Watters"=>"blake@layer.com", "Klemen Verdnik"=>"klemen@layer.com"}

@@ -39,8 +39,7 @@ typedef NS_ENUM(NSUInteger, LYRContentTransferStatus) {
      */
     LYRContentTransferDownloading,
     /**
-     @abstract Content is available locally.
-     @abstract This state is expected when the transfer completes.
+     @abstract Content is available locally. This state is expected when the transfer completes.
      */
     LYRContentTransferComplete,
 };

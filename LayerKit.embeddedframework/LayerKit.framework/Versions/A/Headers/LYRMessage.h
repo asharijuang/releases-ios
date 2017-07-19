@@ -52,8 +52,7 @@ extern NSString * _Nonnull const LYRMessageOptionsPushNotificationConfigurationK
 @interface LYRMessageOptions : NSObject <NSCoding, NSCopying>
 
 /**
- @abstract Push notification configuration sent to the Layer services along with the newly initialized `LYRMessage` instance.
- @discussion @see `LYRPushNotificationConfiguration` for per recipient customization options.
+ @abstract Push notification configuration sent to the Layer services along with the newly initialized `LYRMessage` instance. @see `LYRPushNotificationConfiguration` for per recipient customization options.
  */
 @property (nonatomic, copy, nullable) LYRPushNotificationConfiguration *pushNotificationConfiguration;
 
@@ -144,7 +143,7 @@ extern NSString * _Nonnull const LYRMessageOptionsPushNotificationConfigurationK
 
 /**
  @abstract Deletes a message in the specified mode.
- @param mode The deletion mode, specifying how the message is to be deleted (i.e. for only the currently authenticated user's devices or synchronized across participants).
+ @param deletionMode The deletion mode, specifying how the message is to be deleted (i.e. for only the currently authenticated user's devices or synchronized across participants).
  @param error A pointer to an error that upon failure is set to an error object describing why the deletion failed.
  @return A Boolean value indicating if the request to delete the message was submitted for synchronization.
  @raises NSInvalidArgumentException Raised if `message` is `nil`.
