@@ -1,11 +1,22 @@
 # LayerKit Change Log
 
-## 0.26.8 
+## 0.26.9
+
+#### Enhancements
+
+* Updated the debug snapshot to include the current authentication state of the client as one of `Unauthenticated`, `Authenticated`, or `Challenged`.
+* Optimized the way how clients deal with marking all messages as read. [IOS-2734]
+
+#### Bug Fixes
+
+* Fixes an issue where the client could crash on `-deauthenticate` invocation due to a race condition. [IOS-3101]
+
+## 0.26.8
 
 #### Bug Fixes
 
 * Documentation fixes in various public header files.  
-  
+
 ## 0.26.7
 
 #### Bug Fixes

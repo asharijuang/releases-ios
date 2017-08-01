@@ -11,7 +11,7 @@ CREATE TABLE "conversation_participants" (
   created_at DATETIME NOT NULL,
   deleted_at DATETIME,
   seq INTEGER,
-  event_database_identifier INTEGER UNIQUE,
+  event_database_identifier INTEGER UNIQUE, marked_as_read_position INTEGER, marked_as_read_seq INTEGER,
   UNIQUE(conversation_database_identifier, member_id),
   FOREIGN KEY(conversation_database_identifier) REFERENCES conversations(database_identifier) ON DELETE CASCADE,
   FOREIGN KEY(event_database_identifier) REFERENCES events(database_identifier) ON DELETE CASCADE
@@ -62,7 +62,7 @@ CREATE TABLE "events" (
   member_id TEXT,
   target_seq INTEGER,
   stream_database_identifier INTEGER NOT NULL,
-  client_id BLOB, creator_name TEXT, deletion_mode INTEGER DEFAULT 0,
+  client_id BLOB, creator_name TEXT, deletion_mode INTEGER DEFAULT 0, target_position INTEGER,
   UNIQUE(stream_database_identifier, seq),
   FOREIGN KEY(stream_database_identifier) REFERENCES streams(database_identifier) ON DELETE CASCADE
 );
@@ -446,6 +446,16 @@ BEGIN
   INSERT INTO syncable_changes(table_name, row_identifier, change_type) VALUES ('messages', NEW.database_identifier, 0);
 END;
 
+CREATE TRIGGER track_moving_last_read_message_position_of_conversation_participants AFTER UPDATE OF marked_as_read_position ON conversation_participants
+WHEN NEW.marked_as_read_position IS NOT NULL AND
+  (NEW.marked_as_read_position > OLD.marked_as_read_position OR
+    (NEW.marked_as_read_position IS NOT NULL and OLD.marked_as_read_position IS NULL)) AND
+  (NEW.marked_as_read_seq = OLD.marked_as_read_seq OR
+    (NEW.marked_as_read_seq IS NULL AND OLD.marked_as_read_seq IS NULL))
+BEGIN
+  INSERT INTO syncable_changes(table_name, row_identifier, change_type) VALUES ('conversation_participants_last_read_position', NEW.database_identifier, 1);
+END;
+
 CREATE TRIGGER track_re_inserts_of_conversation_participants AFTER UPDATE OF deleted_at ON conversation_participants
 WHEN NEW.seq IS NOT NULL AND NEW.seq = OLD.seq AND (NEW.deleted_at IS NULL AND OLD.deleted_at NOT NULL)
 BEGIN
@@ -664,3 +674,5 @@ INSERT INTO schema_migrations (version) VALUES (20170126134838315);
 INSERT INTO schema_migrations (version) VALUES (20170127110027836);
 
 INSERT INTO schema_migrations (version) VALUES (20170327121113144);
+
+INSERT INTO schema_migrations (version) VALUES (20170531164227993);
