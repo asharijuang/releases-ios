@@ -1,5 +1,12 @@
 # LayerKit Change Log
 
+## 0.26.10
+
+#### Bug Fixes
+
+* Fixes a race condition when using the `-setPresenceStatus:error:` on the client. [IOS-3106.2]
+* Fixes an issue where some of the changes on the `LYRIdentity` object are ignored. [IOS-3106.2]
+
 ## 0.26.9
 
 #### Enhancements
